@@ -38,7 +38,7 @@ public class SimpleServlet extends HttpServlet {
 	public static final String PASSWORD = "K3-fxy4AWm*P*a{g";
 	public static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
 	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
-	
+	   
     /**
      * 
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
