@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/*
 import org.apache.commons.io.IOUtils;
 
 import org.openstack4j.api.OSClient.OSClientV3;
@@ -20,7 +20,7 @@ import org.openstack4j.model.common.Identifier;
 import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.storage.object.SwiftObject;
 import org.openstack4j.openstack.OSFactory;
-
+*/
 
 /**
  * Servlet implementation class SimpleServlet
