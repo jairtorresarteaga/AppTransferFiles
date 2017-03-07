@@ -93,8 +93,7 @@ public class SimpleServlet extends HttpServlet {
 		
 		System.out.println("Authenticating...");
 
-        
-        
+          
     }
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {

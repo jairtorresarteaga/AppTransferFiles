@@ -9,7 +9,7 @@
         <groupId>net.wasdev.maven.parent</groupId>
         <artifactId>java7-parent</artifactId>
         <version>1.4</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath></relativePath>
     </parent>
 
     <groupId>net.wasdev.wlp.sample</groupId>
