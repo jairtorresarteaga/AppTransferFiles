@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /*
 import org.apache.commons.io.IOUtils;
 
@@ -55,12 +56,41 @@ public class SimpleServlet extends HttpServlet {
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		System.out.println("Inicio de Proceso");
 
-	System.out.println("Successfully retrieved file from ObjectStorage!");
+		System.out.println("Inicio de Proceso");
+
+		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
+
+		System.out.println("Retrieving file from ObjectStorage...");
 		
-		System.out.println("Authenticating...");
- 
           
     }
+    
+    
+    private ObjectStorageService authenticateAndGetObjectStorageService() {
+		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
+		System.out.println("Inicio de Proceso - authenticateAndGetObjectStorageService");
+		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
+
+		System.out.println("Authenticating...");
+		try {
+			OSClientV3 os = OSFactory.builderV3()
+					.endpoint(OBJECT_STORAGE_AUTH_URL)
+					.credentials(USERNAME,PASSWORD, domainIdentifier)
+					.scopeToProject(Identifier.byId(PROJECT_ID))
+					.authenticate();
+	
+			System.out.println("Authenticated successfully!");
+	
+			ObjectStorageService objectStorage = os.objectStorage();
+	
+			return objectStorage;
+		}catch(Exception e){
+	        System.out.println(e);
+	        e.printStackTrace();
+	        return null;
+		}
+//*/		
+	}
     
 
 
