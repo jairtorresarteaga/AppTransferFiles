@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 
-
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.ActionResponse;
@@ -27,6 +26,8 @@ import org.openstack4j.openstack.OSFactory;
  * Servlet implementation class SimpleServlet
  */
 @WebServlet("/SimpleServlet")
+
+
 public class SimpleServlet extends HttpServlet {
     
 	public static final long serialVersionUID = 1L;
@@ -53,7 +54,7 @@ public class SimpleServlet extends HttpServlet {
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		System.out.println("Inicio de Proceso");
 
-		/*ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
+		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
 
@@ -119,7 +120,7 @@ public class SimpleServlet extends HttpServlet {
 	        e.printStackTrace();
 	        return null;
 		}
-*/		
+//*/		
 	}
 
 }
