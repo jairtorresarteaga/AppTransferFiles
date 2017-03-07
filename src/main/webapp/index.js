@@ -11,6 +11,8 @@ xhrGet("SimpleServlet", function(responseText){
 	console.log(err);
 });
 
+
+
 //utilities
 function createXHR(){
 	if(typeof XMLHttpRequest != 'undefined'){
