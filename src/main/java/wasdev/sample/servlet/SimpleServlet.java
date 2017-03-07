@@ -92,7 +92,7 @@ public class SimpleServlet extends HttpServlet {
 		System.out.println("Successfully retrieved file from ObjectStorage!");
 		
 		System.out.println("Authenticating...");
-
+ 
           
     }
     
