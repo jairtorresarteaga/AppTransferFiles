@@ -29,7 +29,7 @@ import org.openstack4j.openstack.OSFactory;
 @WebServlet("/SimpleServlet")
 public class SimpleServlet extends HttpServlet {
     
-    private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	//Get these credentials from Bluemix by going to your Object Storage service, and clicking on Service Credentials:
 	//private static final String USERNAME = "PUT_YOUR_OBJECT_STORAGE_USERNAME_HERE";
@@ -37,10 +37,10 @@ public class SimpleServlet extends HttpServlet {
 	//private static final String DOMAIN_ID = "PUT_YOUR_OBJECT_STORAGE_DOMAIN_ID_HERE";
 	//private static final String PROJECT_ID = "PUT_YOUR_OBJECT_STORAGE_PROJECT_ID_HERE";
 
-	private static final String USERNAME = "admin_294cf97bd70edab00606c4d8d7a193dd344edec2";
-	private static final String PASSWORD = "K3-fxy4AWm*P*a{g";
-	private static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
-	private static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
+	public static final String USERNAME = "admin_294cf97bd70edab00606c4d8d7a193dd344edec2";
+	public static final String PASSWORD = "K3-fxy4AWm*P*a{g";
+	public static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
+	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
 	
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,10 +50,14 @@ public class SimpleServlet extends HttpServlet {
         response.setContentType("text/html");
         response.getWriter().print("Empieza la prueba de comunicación-> Jair Torres..!!!");
         
+		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
+		System.out.println("Inicio de Proceso");
+//		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
+
+		System.out.println("Authenticating...");
+        //ObjectStorageService objectStorage2;
         
-        ObjectStorageService objectStorage2;
-        
-        objectStorage2 = authenticateAndGetObjectStorageService();
+         //authenticateAndGetObjectStorageService();
 
         
         
