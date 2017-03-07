@@ -52,12 +52,46 @@ public class SimpleServlet extends HttpServlet {
         
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		System.out.println("Inicio de Proceso");
-//		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
 
+		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
+
+		System.out.println("Retrieving file from ObjectStorage...");
+
+		String containerName = request.getParameter("container");
+
+		String fileName = request.getParameter("file");
+
+		if(containerName == null || fileName == null){ //No file was specified to be found, or container name is missing
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			System.out.println("Container name or file name was not specified.");
+			return;
+		}
+
+		SwiftObject pictureObj = objectStorage.objects().get(containerName,fileName);
+
+		if(pictureObj == null){ //The specified file was not found
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			System.out.println("File not found.");
+			return;
+		}
+
+		String mimeType = pictureObj.getMimeType();
+
+		DLPayload payload = pictureObj.download();
+
+		InputStream in = payload.getInputStream();
+
+		response.setContentType(mimeType);
+
+		OutputStream out = response.getOutputStream();
+
+		IOUtils.copy(in, out);
+		in.close();
+		out.close();
+
+		System.out.println("Successfully retrieved file from ObjectStorage!");
+		
 		System.out.println("Authenticating...");
-        //ObjectStorageService objectStorage2;
-        
-         //authenticateAndGetObjectStorageService();
 
         
         
@@ -65,7 +99,7 @@ public class SimpleServlet extends HttpServlet {
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
-		System.out.println("Inicio de Proceso");
+		System.out.println("Inicio de Proceso - authenticateAndGetObjectStorageService");
 		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
 
 		System.out.println("Authenticating...");
