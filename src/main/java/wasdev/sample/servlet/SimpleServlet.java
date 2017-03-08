@@ -74,6 +74,8 @@ public class SimpleServlet extends HttpServlet {
 		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
 		System.out.println("2--------------------------");
 		
+		System.out.println(OBJECT_STORAGE_AUTH_URL);
+		
 		try {
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
