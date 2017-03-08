@@ -21,6 +21,10 @@ import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.Identifier;
 import org.openstack4j.openstack.OSFactory;
 
+
+import org.openstack4j.model.identity.AuthVersion;
+import org.openstack4j.model.identity.v3.User;
+
 //
 /**
  * Servlet implementation class SimpleServlet
@@ -51,7 +55,7 @@ public class SimpleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.getWriter().print("Empieza la prueba de comunicación Nro55-> Jair Torres..!!!");
+        response.getWriter().print("Empieza la prueba de comunicación Nro0626-> Jair Torres..!!!");
         
 		System.out.println("Inicio de Proceso");
 		
@@ -81,10 +85,17 @@ public class SimpleServlet extends HttpServlet {
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
 					.credentials(USERNAME,PASSWORD, domainIdentifier)
+					.scopeToProject(Identifier.byId(PROJECT_ID) )
+					//.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
+					.authenticate();
+
+			/*
+			 * .credentials(USERNAME,PASSWORD, domainIdentifier)
 					//.scopeToProject(Identifier.byId(PROJECT_ID) )
 					.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
 					.authenticate();
-	
+*/
+			
 			System.out.println("Authenticated successfully!");
 			ObjectStorageService objectStorage = os.objectStorage();
 	
