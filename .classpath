@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre1.8.0_121/lib/commons-io-2.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jre1.8.0_121/lib/openstack4j-3.0.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/btorrear/Documents/IBM/ObjectStorage/GitAppTransferFiles/src/Library/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/btorrear/Documents/IBM/AppTransferFiles/WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/btorrear/Documents/IBM/AppTransferFiles/WebContent/WEB-INF/lib/openstack4j-3.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/btorrear/Documents/IBM/AppTransferFiles/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="WebContent/WEB-INF/lib"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>

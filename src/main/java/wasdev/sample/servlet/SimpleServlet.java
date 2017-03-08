@@ -54,12 +54,13 @@ public class SimpleServlet extends HttpServlet {
 
 		System.out.println("Inicio de Proceso");
 
-		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
+		//ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
 		
           
     }
+     
     
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {
