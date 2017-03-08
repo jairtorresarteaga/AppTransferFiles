@@ -38,8 +38,8 @@ public class SimpleServlet extends HttpServlet {
 	//private static final String DOMAIN_ID = "PUT_YOUR_OBJECT_STORAGE_DOMAIN_ID_HERE";
 	//private static final String PROJECT_ID = "PUT_YOUR_OBJECT_STORAGE_PROJECT_ID_HERE";
 
-	public static final String USERNAME = "admin_294cf97bd70edab00606c4d8d7a193dd344edec2";
-	public static final String PASSWORD = "K3-fxy4AWm*P*a{g";
+	public static final String USERNAME = "admin_642004462470f53daa8ae103243647cc70b292c3";
+	public static final String PASSWORD = "a{3&9KKxj3PWbgY{";
 	public static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
 	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
 	public static final String domainName = "1258017";
@@ -50,7 +50,7 @@ public class SimpleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.getWriter().print("Empieza la prueba de comunicación Nro44-> Jair Torres..!!!");
+        response.getWriter().print("Empieza la prueba de comunicación Nro55-> Jair Torres..!!!");
         
 		System.out.println("Inicio de Proceso");
 		
@@ -67,7 +67,7 @@ public class SimpleServlet extends HttpServlet {
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
-    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3/auth/tokens";
+    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com";
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
 		
@@ -80,7 +80,7 @@ public class SimpleServlet extends HttpServlet {
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
 					.credentials(USERNAME,PASSWORD, domainIdentifier)
-					.scopeToProject(Identifier.byId(PROJECT_ID),Identifier.byName(domainName) )
+					.scopeToProject(Identifier.byId(PROJECT_ID) )
 					.authenticate();
 	
 			System.out.println("Authenticated successfully!");
