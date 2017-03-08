@@ -61,14 +61,13 @@ public class SimpleServlet extends HttpServlet {
 		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
-		
+		System.out.println(objectStorage.containers().toString());
           
     }
      
- 
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {
-		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
+		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com";
 		System.out.println("Inicio de Proceso - authenticateAndGetObjectStorageService");
 		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
 
@@ -86,6 +85,7 @@ public class SimpleServlet extends HttpServlet {
 	
 			return objectStorage;
 		}catch(Exception e){
+			System.out.println("Error durante proceso de autenticación...");
 	        System.out.println(e);
 	        e.printStackTrace();
 	        return null;
