@@ -1,8 +1,6 @@
 package wasdev.sample.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 //import org.apache.commons.io.IOUtils;
 /*
+ * 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.Identifier;
