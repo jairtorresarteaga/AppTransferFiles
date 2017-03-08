@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.apache.commons.io.IOUtils;
-/*
- * 
+
+ 
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -19,7 +19,7 @@ import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.Identifier;
 import org.openstack4j.openstack.OSFactory;
-*/
+
 //
 /**
  * Servlet implementation class SimpleServlet
@@ -54,7 +54,10 @@ public class SimpleServlet extends HttpServlet {
 		System.out.println("Inicio de Proceso");
 
 		System.out.println("Inicio de Proceso");
-
+		
+		ObjectStorageService objectStorage;
+		
+		
 		//ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
