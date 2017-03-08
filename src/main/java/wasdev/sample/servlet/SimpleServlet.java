@@ -48,24 +48,24 @@ public class SimpleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        response.getWriter().print("Empieza la prueba de comunicación-> Jair Torres..!!!");
+        response.getWriter().print("Empieza la prueba de comunicación Nro2-> Jair Torres..!!!");
         
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		System.out.println("Inicio de Proceso");
 
 		System.out.println("Inicio de Proceso");
 		
-		ObjectStorageService objectStorage;
+		//ObjectStorageService objectStorage;
 		
 		
-		//ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
+		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
 		
           
     }
      
- /*
+ 
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
@@ -91,6 +91,6 @@ public class SimpleServlet extends HttpServlet {
 	        return null;
 		}
 	
-	}*/
+	}
     
 }
