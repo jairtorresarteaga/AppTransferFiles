@@ -42,6 +42,7 @@ public class SimpleServlet extends HttpServlet {
 	public static final String PASSWORD = "K3-fxy4AWm*P*a{g";
 	public static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
 	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
+	public static final String domainName = "1258017";
 	   
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,7 +67,7 @@ public class SimpleServlet extends HttpServlet {
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
-    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
+    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3/auth/tokens";
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
 		
@@ -77,7 +78,7 @@ public class SimpleServlet extends HttpServlet {
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
 					.credentials(USERNAME,PASSWORD, domainIdentifier)
-					.scopeToProject(Identifier.byId(PROJECT_ID))
+					.scopeToProject(Identifier.byId(PROJECT_ID),Identifier.byName(domainName) )
 					.authenticate();
 	
 			System.out.println("Authenticated successfully!");
