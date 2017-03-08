@@ -41,7 +41,6 @@ public class SimpleServlet extends HttpServlet {
 	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
 	   
     /**
-     * 
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     @Override
@@ -61,7 +60,7 @@ public class SimpleServlet extends HttpServlet {
           
     }
      
-    
+ /*
     
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
@@ -86,9 +85,7 @@ public class SimpleServlet extends HttpServlet {
 	        e.printStackTrace();
 	        return null;
 		}
-//*/		
-	}
+	
+	}*/
     
-
-
 }
