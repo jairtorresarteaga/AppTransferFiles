@@ -72,7 +72,7 @@ public class SimpleServlet extends HttpServlet {
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
-    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com";
+    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
 		try {
@@ -84,7 +84,7 @@ public class SimpleServlet extends HttpServlet {
 		
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
-					.credentials(USERNAME,PASSWORD, domainIdentifier)
+					.credentials(USERNAME,PASSWORD)
 					.scopeToProject(Identifier.byId(PROJECT_ID) )
 					//.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
 					.authenticate();
