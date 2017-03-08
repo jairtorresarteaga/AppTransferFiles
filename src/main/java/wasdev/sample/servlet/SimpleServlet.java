@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.openstack4j.api.OSClient.OSClientV2;
+
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.Identifier;
@@ -42,6 +42,7 @@ public class SimpleServlet extends HttpServlet {
 	public static final String PASSWORD = "a{3&9KKxj3PWbgY{";
 	public static final String DOMAIN_ID = "b3fa3bbc790244ceba58b583fbf8c5f5";
 	public static final String PROJECT_ID = "10c9e4313e824aaea9dde317b7b41451";
+	public static final String PROJECT_NAME = "object_storage_474c1d83_4d7d_41c4_be9e_ed8141cbfd39";
 	public static final String domainName = "1258017";
 	   
     /**
@@ -67,20 +68,21 @@ public class SimpleServlet extends HttpServlet {
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
-    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com";
+    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
-		
-		Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
-		System.out.println("2--------------------------");
-		
-		System.out.println(OBJECT_STORAGE_AUTH_URL);
-		
 		try {
+			Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
+			System.out.println("2--------------------------");
+			
+			System.out.println(OBJECT_STORAGE_AUTH_URL);
+		
+		
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
 					.credentials(USERNAME,PASSWORD, domainIdentifier)
-					.scopeToProject(Identifier.byId(PROJECT_ID) )
+					//.scopeToProject(Identifier.byId(PROJECT_ID) )
+					.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
 					.authenticate();
 	
 			System.out.println("Authenticated successfully!");
