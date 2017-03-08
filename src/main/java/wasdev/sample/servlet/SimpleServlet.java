@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.storage.ObjectStorageService;
 import org.openstack4j.model.common.Identifier;
@@ -50,9 +51,6 @@ public class SimpleServlet extends HttpServlet {
         response.setContentType("text/html");
         response.getWriter().print("Empieza la prueba de comunicación Nro33-> Jair Torres..!!!");
         
-		String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
-		System.out.println("Inicio de Proceso");
-
 		System.out.println("Inicio de Proceso");
 		
 		//ObjectStorageService objectStorage;
@@ -61,7 +59,7 @@ public class SimpleServlet extends HttpServlet {
 		ObjectStorageService objectStorage = authenticateAndGetObjectStorageService();
 
 		System.out.println("Retrieving file from ObjectStorage...");
-		System.out.println(objectStorage.containers().toString());
+		//System.out.println(objectStorage.containers().toString());
           
     }
      
@@ -87,6 +85,15 @@ public class SimpleServlet extends HttpServlet {
 			System.out.println("Error durante proceso de autenticación...");
 	        System.out.println(e);
 	        e.printStackTrace();
+	        
+			OSClientV2 os = OSFactory.builderV2()
+					.endpoint(OBJECT_STORAGE_AUTH_URL)
+					.credentials(USERNAME,PASSWORD)
+					.tenantName("admin")
+					.authenticate();
+	
+				System.out.println("Authenticated successfully!");
+	        
 	        return null;
 		}
 	
