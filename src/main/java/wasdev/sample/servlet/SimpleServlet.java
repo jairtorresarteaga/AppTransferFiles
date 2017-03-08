@@ -72,7 +72,7 @@ public class SimpleServlet extends HttpServlet {
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
-    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com/v3";
+    	String OBJECT_STORAGE_AUTH_URL = "https://identity.open.softlayer.com";
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
 		try {
