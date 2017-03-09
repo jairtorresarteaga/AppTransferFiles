@@ -25,6 +25,10 @@ import org.openstack4j.openstack.OSFactory;
 import org.openstack4j.model.identity.AuthVersion;
 import org.openstack4j.model.identity.v3.User;
 
+import org.openstack4j.model.common.Payload;
+import org.openstack4j.model.storage.object.SwiftObject;
+import org.openstack4j.openstack.OSFactory;
+import org.openstack4j.model.common.DLPayload;
 //
 /**
  * Servlet implementation class SimpleServlet
@@ -66,7 +70,32 @@ public class SimpleServlet extends HttpServlet {
 
 		System.out.println("Retrieving file from ObjectStorage...");
 		//System.out.println(objectStorage.containers().toString());
-          
+        
+		String containerName = "TdP-SIA";
+
+		String fileName = "readme.html";
+		
+		SwiftObject pictureObj = objectStorage.objects().get(containerName,fileName);
+
+		if(pictureObj == null){ //The specified file was not found
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			System.out.println("File not found.");
+			return;
+		}
+
+		String mimeType = pictureObj.getMimeType();
+
+		DLPayload payload = pictureObj.download();
+
+		InputStream in = payload.getInputStream();
+
+		response.setContentType(mimeType);
+
+		OutputStream out = response.getOutputStream();
+
+		IOUtils.copy(in, out);
+		in.close();
+		out.close();
     }
      
     private ObjectStorageService authenticateAndGetObjectStorageService() {
@@ -90,12 +119,7 @@ public class SimpleServlet extends HttpServlet {
 					.scopeToProject(Identifier.byId(PROJECT_ID),Identifier.byId(DOMAIN_ID) )
 					.authenticate();
 
-			/*
-			 * .credentials(USERNAME,PASSWORD, domainIdentifier)
-					//.scopeToProject(Identifier.byId(PROJECT_ID) )
-					.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
-					.authenticate();
-*/
+
 			
 			System.out.println("Authenticated successfully!");
 			ObjectStorageService objectStorage = os.objectStorage();
