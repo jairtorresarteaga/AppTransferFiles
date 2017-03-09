@@ -32,6 +32,8 @@ import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.storage.object.SwiftObject;
 import org.openstack4j.openstack.OSFactory;
 import org.openstack4j.model.common.DLPayload;
+import org.openstack4j.model.common.ActionResponse;
+
 //
 /**
  * Servlet implementation class SimpleServlet
@@ -76,63 +78,20 @@ public class SimpleServlet extends HttpServlet {
         
 		String containerName = "TdP-SIA";
 
-		String fileName = "C:\\Pagina_4.xps";
+		String fileName = "readme.html";
 		
-		SwiftObject pictureObj = objectStorage.objects().get(containerName,fileName);
+		ActionResponse deleteResponse = objectStorage.objects().delete(containerName,fileName);
 
-		if(pictureObj == null){ //The specified file was not found
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			System.out.println("File not found.");
+		if(!deleteResponse.isSuccess()){
+			response.sendError(deleteResponse.getCode());
+			System.out.println("Delete failed: " + deleteResponse.getFault());
 			return;
 		}
-		InputStream inputStream = null;
-		BufferedReader br = null;
-		try {
-		
-			// read this file into InputStream
-			inputStream = new FileInputStream(fileName);
-
-			br = new BufferedReader(new InputStreamReader(inputStream));
-
-			StringBuilder sb = new StringBuilder();
-
-			String line;
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-			}
-
-			System.out.println(sb.toString());
-			System.out.println("\nDone!");
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+		else{
+			response.setStatus(HttpServletResponse.SC_OK);
 		}
-		
-		final InputStream fileStream = inputStream;
-		
-		System.out.println("Inicio PayloadClass...");
-		
-		
-		Payload<InputStream> payload = new PayloadClass(fileStream);
-		System.out.println("Fin PayloadClass...");
-		objectStorage.objects().put(containerName, fileName, payload);
-		
-		System.out.println("Successfully stored file in ObjectStorage!");
+
+		System.out.println("Successfully deleted file from ObjectStorage!");
 		
 		
     }
