@@ -95,37 +95,7 @@ public class SimpleServlet extends HttpServlet {
 		
 		
     }
-	private class PayloadClass implements Payload<InputStream> {
-		private InputStream stream = null;
-
-		public PayloadClass(InputStream stream) {
-			this.stream = stream;
-		}
-
-		@Override
-		public void close() throws IOException {
-			stream.close();
-		}
-
-		@Override
-		public InputStream open() {
-			return stream;
-		}
-
-		@Override
-		public void closeQuietly() {
-			try {
-				stream.close();
-			} catch (IOException e) {
-			}
-		}
-
-		@Override
-		public InputStream getRaw() {
-			return stream;
-		}
-
-	}
+	
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
