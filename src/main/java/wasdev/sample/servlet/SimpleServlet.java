@@ -84,9 +84,9 @@ public class SimpleServlet extends HttpServlet {
 		
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
-					.credentials(USERNAME,PASSWORD)
-					.scopeToProject(Identifier.byId(PROJECT_ID) )
-					//.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
+					.credentials(USERNAME,PASSWORD, domainIdentifier)
+					//.scopeToProject(Identifier.byId(PROJECT_ID) )
+					.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
 					.authenticate();
 
 			/*
