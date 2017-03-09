@@ -76,7 +76,8 @@ public class SimpleServlet extends HttpServlet {
 		
 		System.out.println("Inicio de Proceso - 1-----------------------");
 		try {
-			Identifier domainIdentifier = Identifier.byName(DOMAIN_ID);
+			Identifier domainIdentifier = Identifier.byId(DOMAIN_ID);
+			
 			System.out.println("2--------------------------");
 			
 			System.out.println(OBJECT_STORAGE_AUTH_URL);
@@ -85,8 +86,8 @@ public class SimpleServlet extends HttpServlet {
 			OSClientV3 os = OSFactory.builderV3()
 					.endpoint(OBJECT_STORAGE_AUTH_URL)
 					.credentials(USERNAME,PASSWORD, domainIdentifier)
-					.scopeToProject(Identifier.byId(PROJECT_ID) )
-					//.scopeToProject(Identifier.byName(PROJECT_NAME),Identifier.byName(domainName) )
+					//.scopeToProject(Identifier.byId(PROJECT_ID) )
+					.scopeToProject(Identifier.byId(PROJECT_ID),Identifier.byId(DOMAIN_ID) )
 					.authenticate();
 
 			/*
@@ -110,5 +111,7 @@ public class SimpleServlet extends HttpServlet {
 		}
 	
 	}
+    
+    
     
 }
