@@ -73,7 +73,7 @@ public class SimpleServlet extends HttpServlet {
         
 		String containerName = "TdP-SIA";
 
-		String fileName = "C://Pagina_4.xps";
+		String fileName = "C:\\Pagina_4.xps";
 		
 		SwiftObject pictureObj = objectStorage.objects().get(containerName,fileName);
 
