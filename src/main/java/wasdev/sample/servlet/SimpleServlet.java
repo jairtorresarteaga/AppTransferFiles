@@ -73,7 +73,7 @@ public class SimpleServlet extends HttpServlet {
         
 		String containerName = "TdP-SIA";
 
-		String fileName = "readme.html";
+		String fileName = "C:\\Página 4.xps";
 		
 		SwiftObject pictureObj = objectStorage.objects().get(containerName,fileName);
 
@@ -82,22 +82,49 @@ public class SimpleServlet extends HttpServlet {
 			System.out.println("File not found.");
 			return;
 		}
-
-		String mimeType = pictureObj.getMimeType();
-
-		DLPayload payload = pictureObj.download();
-
-		InputStream in = payload.getInputStream();
-
-		response.setContentType(mimeType);
-
-		OutputStream out = response.getOutputStream();
-
-		IOUtils.copy(in, out);
-		in.close();
-		out.close();
+		
+		final InputStream fileStream = request.getInputStream();
+		
+		System.out.println("Inicio PayloadClass...");
+		Payload<InputStream> payload = new PayloadClass(fileStream);
+		System.out.println("Fin PayloadClass...");
+		objectStorage.objects().put(containerName, fileName, payload);
+		
+		System.out.println("Successfully stored file in ObjectStorage!");
+		
+		
     }
-     
+	private class PayloadClass implements Payload<InputStream> {
+		private InputStream stream = null;
+
+		public PayloadClass(InputStream stream) {
+			this.stream = stream;
+		}
+
+		@Override
+		public void close() throws IOException {
+			stream.close();
+		}
+
+		@Override
+		public InputStream open() {
+			return stream;
+		}
+
+		@Override
+		public void closeQuietly() {
+			try {
+				stream.close();
+			} catch (IOException e) {
+			}
+		}
+
+		@Override
+		public InputStream getRaw() {
+			return stream;
+		}
+
+	}
     private ObjectStorageService authenticateAndGetObjectStorageService() {
 		
     	
